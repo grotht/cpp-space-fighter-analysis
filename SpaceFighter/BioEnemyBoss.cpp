@@ -2,16 +2,19 @@
 #include "Level.h"
 void BioEnemyBoss::LoadContent(ResourceManager& resourceManager)
 {
-	m_pTexture = resourceManager.Load<Texture>("Textures\\BioEnemyBoss.png");
 	AudioSample* pAudio = resourceManager.Load<AudioSample>("Audio\\Effects\\Laser.wav");
 	GetWeapon("blaster")->SetFireSound(pAudio);
-	SetPosition(Game::GetScreenCenter() + Vector2::UNIT_Y * 900);	
+	pAudio->SetVolume(0.5f);
+	
+	//SetPosition(Game::GetScreenCenter() + Vector2::UNIT_Y * 1);
+
+		
 }
 BioEnemyBoss::BioEnemyBoss()
 {
-	SetSpeed(50);
+	SetSpeed(200);
 	SetMaxHitPoints(20);
-	SetCollisionRadius(40);
+	SetCollisionRadius(140);
 }
 
 void BioEnemyBoss::Update(const GameTime& gameTime)
@@ -23,7 +26,7 @@ void BioEnemyBoss::Update(const GameTime& gameTime)
 		TranslatePosition(x);
 		
 	}
-	BioEnemyShip::Update(gameTime);
+	EnemyShip::Update(gameTime);
 }
 
 void BioEnemyBoss::Draw(SpriteBatch& spriteBatch)
@@ -32,5 +35,7 @@ void BioEnemyBoss::Draw(SpriteBatch& spriteBatch)
 	{
 		const float a = GetCurrentLevel()->GetAlpha();
 		spriteBatch.Draw(m_pTexture, GetPosition(), Color::WHITE * a, m_pTexture->GetCenter(), Vector2::ONE, Math::PI, 1);
+		//spriteBatch.Draw(m_pTexture, GetPosition(), Color::WHITE * a, m_pTexture->GetCenter());
+
 	}
 }

@@ -12,6 +12,7 @@ public:
 	virtual void Update(const GameTime& gameTime);
 	
 	virtual void Draw(SpriteBatch& spriteBatch);
+	
 
 private:
 	Texture* m_pTexture = nullptr;
