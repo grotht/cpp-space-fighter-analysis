@@ -6,14 +6,14 @@ void BioEnemyBoss::LoadContent(ResourceManager& resourceManager)
 	GetWeapon("blaster")->SetFireSound(pAudio);
 	pAudio->SetVolume(0.5f);
 	
-	//SetPosition(Game::GetScreenCenter() + Vector2::UNIT_Y * 1);
+	
 
 		
 }
 BioEnemyBoss::BioEnemyBoss()
 {
-	SetSpeed(200);
-	SetMaxHitPoints(20);
+	SetSpeed(350);
+	SetMaxHitPoints(1);
 	SetCollisionRadius(140);
 }
 
@@ -22,8 +22,9 @@ void BioEnemyBoss::Update(const GameTime& gameTime)
 	if (IsActive())
 	{
 		float x = sin(gameTime.GetTotalTime() * Math::PI + GetIndex());
-		x *= GetSpeed() * gameTime.GetElapsedTime() * 1.4f;
+		x *= GetSpeed() * gameTime.GetElapsedTime() * 2.7f;
 		TranslatePosition(x);
+		FireWeapons();
 		
 	}
 	EnemyShip::Update(gameTime);
@@ -35,6 +36,7 @@ void BioEnemyBoss::Draw(SpriteBatch& spriteBatch)
 	{
 		const float a = GetCurrentLevel()->GetAlpha();
 		spriteBatch.Draw(m_pTexture, GetPosition(), Color::WHITE * a, m_pTexture->GetCenter(), Vector2::ONE, Math::PI, 1);
+		// add this if i want to flip the ship back
 		//spriteBatch.Draw(m_pTexture, GetPosition(), Color::WHITE * a, m_pTexture->GetCenter());
 
 	}

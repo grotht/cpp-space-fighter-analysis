@@ -29,7 +29,7 @@ public:
 	/** @brief Activate the projectile.
 		@param position The position to activate the projectile at.
 		@param wasShotByPlayer A flag to determine if the projectile was fired by the player. */
-	virtual void Activate(const Vector2 &position, bool wasShotByPlayer = true);
+	virtual void Activate(const Vector2 &position, bool wasShotByPlayer);
 
 	/** @brief Get the amount of damage the projectile will deal.
 		@return The amount of damage the projectile will deal. */
@@ -43,6 +43,11 @@ public:
 		@return The type of collision the projectile will have. */
 	virtual CollisionType GetCollisionType() const;
 
+/** @brief Set the direction of the projectile.
+		@param direction The direction of the projectile. */
+	virtual void SetDirection(const Vector2 direction) { m_direction = direction; }
+
+	virtual void SetWasShotByEnemy() { m_wasShotByPlayer = false; }
 
 protected:
 
@@ -54,9 +59,7 @@ protected:
 		@param damage The amount of damage the projectile will deal. */
 	virtual void SetDamage(const float damage) { m_damage = damage; }
 
-	/** @brief Set the direction of the projectile.
-		@param direction The direction of the projectile. */
-	virtual void SetDirection(const Vector2 direction) { m_direction = direction; }
+	
 
 	/** @brief Get the speed of the projectile.
 		@return The speed of the projectile. */

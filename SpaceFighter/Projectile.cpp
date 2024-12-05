@@ -20,7 +20,7 @@ void Projectile::Update(const GameTime& gameTime)
 		Vector2 position = GetPosition();
 		Vector2 size = s_pTexture->GetSize();
 
-		// Is the projectile off the screen?
+		// Is the projectile off the screen?                    
 		if (position.Y < -size.Y) Deactivate();
 		else if (position.X < -size.X) Deactivate();
 		else if (position.Y > Game::GetScreenHeight() + size.Y) Deactivate();

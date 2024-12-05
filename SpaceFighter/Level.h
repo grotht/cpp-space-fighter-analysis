@@ -153,6 +153,7 @@ private:
 
 	PlayerShip* m_pPlayerShip;
 	std::vector<Projectile*> m_projectiles;
+	
 
 	void CheckCollisions(std::vector<GameObject*>& sector);
 
