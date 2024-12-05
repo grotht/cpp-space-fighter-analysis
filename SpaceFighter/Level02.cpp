@@ -3,13 +3,16 @@
 #include "Level02.h"
 #include "BioEnemyShip.h"
 
+bool Level02::IsOver() const {
+	return (GetEnemyShipsRemaining() <= 0);
+}
 
 void Level02::LoadContent(ResourceManager& resourceManager)
 {
 	// Setup enemy ships
 	Texture* pTexture = resourceManager.Load<Texture>("Textures\\BioEnemyShip.png");
 
-	const int COUNT = 22;
+	const int COUNT = Level02::m_enemyShipCount;
 
 	double xPositions[COUNT] =
 	{

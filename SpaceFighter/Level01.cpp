@@ -1,15 +1,23 @@
 
-
+#include "Level.h"
 #include "Level01.h"
 #include "BioEnemyShip.h"
 
+
+bool Level01::IsOver() const {
+	if (GetEnemyShipsRemaining() <= 0) {
+		std::cout << "Time to transition levels.";
+		return true;
+	}
+}
 
 void Level01::LoadContent(ResourceManager& resourceManager)
 {
 	// Setup enemy ships
 	Texture *pTexture = resourceManager.Load<Texture>("Textures\\BioEnemyShip.png");
 
-	const int COUNT = 21;
+	const int COUNT = Level01::m_enemyShipCount;
+	SetEnemyShipsRemaining(COUNT);
 
 	double xPositions[COUNT] =
 	{

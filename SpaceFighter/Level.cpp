@@ -140,6 +140,8 @@ void Level::Update(const GameTime& gameTime)
 	for (Explosion *pExplosion : s_explosions) pExplosion->Update(gameTime);
 
 	if (!m_pPlayerShip->IsActive()) GetGameplayScreen()->Exit();
+
+	IsOver();
 }
 
 
@@ -254,4 +256,11 @@ void Level::Draw(SpriteBatch& spriteBatch)
 	spriteBatch.Begin(SpriteSortMode::Deferred, BlendState::Additive);
 	for (Explosion* pExplosion : s_explosions) pExplosion->Draw(spriteBatch);
 	spriteBatch.End();
+}
+
+void Level::DecreaseEnemyShips() {
+	if (m_enemyShipsRemaining > 0) {
+		std::cout << "Decreasing ship count!\n";
+		m_enemyShipsRemaining--;
+	}
 }

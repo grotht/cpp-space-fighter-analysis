@@ -46,6 +46,8 @@ public:
 private:
 
 	int m_levelIndex = 0;
+	//Sets the max level that the game will auto transition too (eg. if the last level is 2, then a value of 1 is expected)
+	int m_maxLevelIndex = 2;
 
 	Level *m_pLevel = nullptr;
 
