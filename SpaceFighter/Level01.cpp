@@ -5,10 +5,8 @@
 
 
 bool Level01::IsOver() const {
-	if (GetEnemyShipsRemaining() <= 0) {
-		std::cout << "Time to transition levels.";
-		return true;
-	}
+	return (GetEnemyShipsRemaining() <= 0);
+		
 }
 
 void Level01::LoadContent(ResourceManager& resourceManager)
