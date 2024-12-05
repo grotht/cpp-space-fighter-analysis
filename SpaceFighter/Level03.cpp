@@ -8,22 +8,24 @@ bool Level03::IsOver() const {
 void Level03::LoadContent(ResourceManager& resourceManager)
 {
 	Texture* pTexture = resourceManager.Load<Texture>("Textures\\BioEnemyBoss.png");
-	const int COUNT = Level03::m_enemyShipCount;;
 
-	double xPositions[COUNT] =
+	double xPositions[] =
 	{
 		0.5
 	};
 
-	double delays[COUNT] =
+	double delays[] =
 	{
 		0.0
 	};
 
+	m_enemyShipCount = sizeof(xPositions) / sizeof(xPositions[0]);
+	SetEnemyShipsRemaining(m_enemyShipCount);
+
 	float delay = 1.0; // start delay
 	Vector2 position;
 
-	for (int i = 0; i < COUNT; i++)
+	for (int i = 0; i < m_enemyShipCount; i++)
 	{
 		delay += delays[i];
 		position.Set(xPositions[i] * Game::GetScreenWidth(), 100);

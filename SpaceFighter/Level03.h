@@ -15,5 +15,5 @@ public:
 
 private:
 	// How many enemy ships to spawn for this level
-	static const int m_enemyShipCount = 1;
+	int m_enemyShipCount = 0;
 };

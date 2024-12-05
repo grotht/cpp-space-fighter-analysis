@@ -12,9 +12,7 @@ void Level02::LoadContent(ResourceManager& resourceManager)
 	// Setup enemy ships
 	Texture* pTexture = resourceManager.Load<Texture>("Textures\\BioEnemyShip.png");
 
-	const int COUNT = Level02::m_enemyShipCount;
-
-	double xPositions[COUNT] =
+	double xPositions[] =
 	{
 		0.25, 0.2, 0.3,
 		0.75, 0.8, 0.7,
@@ -23,7 +21,7 @@ void Level02::LoadContent(ResourceManager& resourceManager)
 		0.5, 0.4, 0.6, 0.45, 0.55, .6
 	};
 
-	double delays[COUNT] =
+	double delays[] =
 	{
 		0.0, 0.25, 0.25,
 		3.0, 0.25, 0.25,
@@ -32,10 +30,13 @@ void Level02::LoadContent(ResourceManager& resourceManager)
 		3.5, 0.3, 0.3, 0.3, 0.3, 0.3
 	};
 
+	m_enemyShipCount = sizeof(xPositions) / sizeof(xPositions[0]);
+	SetEnemyShipsRemaining(m_enemyShipCount);
+
 	float delay = 3.0; // start delay
 	Vector2 position;
 
-	for (int i = 0; i < COUNT; i++)
+	for (int i = 0; i < m_enemyShipCount; i++)
 	{
 		delay += delays[i];
 		position.Set(xPositions[i] * Game::GetScreenWidth(), -pTexture->GetCenter().Y);

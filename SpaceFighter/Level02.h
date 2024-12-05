@@ -20,5 +20,5 @@ public:
 	virtual bool IsOver() const;
 private:
 	// How many enemy ships to spawn for this level
-	static const int m_enemyShipCount = 22;
+	int m_enemyShipCount = 0;
 };
