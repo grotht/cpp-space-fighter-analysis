@@ -16,9 +16,4 @@ public:
 		@param resourceManager A reference to the game's resource manager,
 		used for loading and managing game assets (resources). */
 	virtual void LoadContent(ResourceManager& resourceManager);
-
-	virtual bool IsOver() const;
-private:
-	// How many enemy ships to spawn for this level
-	int m_enemyShipCount = 0;
 };

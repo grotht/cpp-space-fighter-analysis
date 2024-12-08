@@ -10,10 +10,4 @@ public:
 	virtual ~Level03() { }
 
 	virtual void LoadContent(ResourceManager& resourceManager);
-
-	virtual bool IsOver() const;
-
-private:
-	// How many enemy ships to spawn for this level
-	int m_enemyShipCount = 0;
 };

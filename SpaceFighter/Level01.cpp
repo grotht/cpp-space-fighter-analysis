@@ -1,13 +1,7 @@
 
-#include "Level.h"
+
 #include "Level01.h"
 #include "BioEnemyShip.h"
-
-
-bool Level01::IsOver() const {
-	return (GetEnemyShipsRemaining() <= 0);
-		
-}
 
 void Level01::LoadContent(ResourceManager& resourceManager)
 {
@@ -32,13 +26,13 @@ void Level01::LoadContent(ResourceManager& resourceManager)
 		3.5, 0.3, 0.3, 0.3, 0.3
 	};
 
-	m_enemyShipCount = sizeof(xPositions) / sizeof(xPositions[0]);
-	SetEnemyShipsRemaining(m_enemyShipCount);
+	SetEnemyShipCount(sizeof(xPositions) / sizeof(xPositions[0]));
+	SetEnemyShipsRemaining( GetEnemyShipCount() );
 
 	float delay = 3.0; // start delay
 	Vector2 position;
 
-	for (int i = 0; i < m_enemyShipCount; i++)
+	for (int i = 0; i < GetEnemyShipCount(); i++)
 	{
 		delay += delays[i];
 		position.Set(xPositions[i] * Game::GetScreenWidth(), -pTexture->GetCenter().Y);

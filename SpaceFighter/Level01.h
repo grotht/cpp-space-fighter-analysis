@@ -5,7 +5,6 @@
 /** @brief The first level of the game. */
 class Level01 :	public Level
 {
-
 public:
 	
 	/** @brief Instantiate a level object. */
@@ -16,10 +15,5 @@ public:
 		@param resourceManager A reference to the game's resource manager,
 		used for loading and managing game assets (resources). */
 	virtual void LoadContent(ResourceManager& resourceManager);
-	virtual bool IsOver() const;
-
-private:
-	// How many enemy ships to spawn for this level
-	int m_enemyShipCount = 0;
 };
 

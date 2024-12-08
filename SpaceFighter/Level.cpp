@@ -84,6 +84,16 @@ Level::~Level()
 	}
 }
 
+void Level::DecreaseEnemyShips() {
+	if (m_enemyShipsRemaining > 0) {
+		m_enemyShipsRemaining--;
+	}
+}
+
+bool Level::IsOver() const {
+	return (GetEnemyShipsRemaining() <= 0);
+}
+
 
 void Level::LoadContent(ResourceManager& resourceManager)
 {
@@ -256,11 +266,4 @@ void Level::Draw(SpriteBatch& spriteBatch)
 	spriteBatch.Begin(SpriteSortMode::Deferred, BlendState::Additive);
 	for (Explosion* pExplosion : s_explosions) pExplosion->Draw(spriteBatch);
 	spriteBatch.End();
-}
-
-void Level::DecreaseEnemyShips() {
-	if (m_enemyShipsRemaining > 0) {
-		std::cout << "Decreasing ship count!\n";
-		m_enemyShipsRemaining--;
-	}
 }
