@@ -38,6 +38,17 @@ void GameplayScreen::LoadLevel(const int levelIndex)
 	m_pLevel->LoadContent(*m_pResourceManager);
 }
 
+void GameplayScreen::NextLevel()
+{
+	if (m_levelIndex >= m_maxLevelIndex) {
+		Exit();
+	}
+	else {
+		m_levelIndex++;
+		LoadLevel(m_levelIndex);
+	}
+}
+
 void GameplayScreen::HandleInput(const InputState& input)
 {
 	m_pLevel->HandleInput(input);

@@ -42,11 +42,14 @@ public:
 		@param levelIndex The index of the level to load. */
 	virtual void LoadLevel(const int levelIndex);
 
+	/** @brief Load the next level. If the next level doesn't exist it exits. */
+	virtual void NextLevel();
+
 
 private:
-
+	// Sets the starting level
 	int m_levelIndex = 0;
-	//Sets the max level that the game will auto transition too (eg. if the last level is 2, then a value of 1 is expected)
+	// Sets the max level that the game will auto transition too (eg. if the last level is 2, then a value of 1 is expected)
 	int m_maxLevelIndex = 2;
 
 	Level *m_pLevel = nullptr;
