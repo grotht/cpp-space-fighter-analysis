@@ -119,7 +119,7 @@ void Level::LoadContent(ResourceManager& resourceManager)
 
 void Level::HandleInput(const InputState& input)
 {
-	if (IsScreenTransitioning()) return;
+	//if (IsScreenTransitioning()) return;
 
 	m_pPlayerShip->HandleInput(input);
 }
