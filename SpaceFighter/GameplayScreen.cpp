@@ -45,7 +45,8 @@ void GameplayScreen::NextLevel()
 	}
 	else {
 		m_levelIndex++;
-		LoadLevel(m_levelIndex);
+		SetOnRemove([this]() { AddScreen(new GameplayScreen(m_levelIndex)); });
+		Exit();
 	}
 }
 

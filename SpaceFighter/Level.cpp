@@ -151,7 +151,7 @@ void Level::Update(const GameTime& gameTime)
 
 	if (!m_pPlayerShip->IsActive()) GetGameplayScreen()->Exit();
 
-	if (IsOver()) {
+	if (IsOver() && !IsScreenTransitioning()) {
 		GetGameplayScreen()->NextLevel();
 	}
 }
