@@ -1,5 +1,6 @@
 
 #include "EnemyShip.h"
+#include "Level.h"
 
 
 EnemyShip::EnemyShip()
@@ -43,4 +44,16 @@ void EnemyShip::Initialize(const Vector2 position, const double delaySeconds)
 void EnemyShip::Hit(const float damage)
 {
 	Ship::Hit(damage);
+
+	if (IsActive()) return;
+
+	Level* currentLevel = GetCurrentLevel();
+	currentLevel->DecreaseEnemyShips();
+}
+
+void EnemyShip::Deactivate() {
+	Level* currentLevel = GetCurrentLevel();
+	currentLevel->DecreaseEnemyShips();
+
+	GameObject::Deactivate();
 }

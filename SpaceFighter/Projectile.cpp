@@ -35,7 +35,27 @@ void Projectile::Draw(SpriteBatch& spriteBatch)
 	if (IsActive())
 	{
 		const float alpha = GetCurrentLevel()->GetAlpha();
-		spriteBatch.Draw(s_pTexture, GetPosition(), Color::WHITE * alpha, s_pTexture->GetCenter());
+
+		//float direction = 0;
+
+		//if (Projectile::m_direction == Vector2(-0.5, -0.5))
+		//{ 
+		//	direction = atan2(-0.5, 0.5);
+		//}
+
+		//if (Projectile::m_direction == Vector2(0.5, -0.5))
+		//{
+		//	direction = atan2(-0.5, -0.5);
+		//}
+
+		//if (Projectile::m_direction == Vector2(0, 1))
+		//{
+		//	direction = atan2(0, -1);
+		//}
+
+		float direction = atan2(Projectile::m_direction.X, -Projectile::m_direction.Y);
+
+		spriteBatch.Draw(s_pTexture, GetPosition(), Color::WHITE * alpha, s_pTexture->GetCenter(), Vector2::ONE, direction);
 	}
 }
 

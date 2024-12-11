@@ -42,6 +42,8 @@ public:
 		@return Returns the collision type of the enemy ship. */
 	virtual CollisionType GetCollisionType() const { return CollisionType::Enemy | CollisionType::Ship; }
 
+	virtual void Deactivate();
+
 
 protected:
 
