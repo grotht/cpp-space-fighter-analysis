@@ -29,11 +29,25 @@ void GameplayScreen::LoadLevel(const int levelIndex)
 
 	switch (levelIndex)
 	{
-	case 0: m_pLevel = new Level03(); break;
+	case 0: m_pLevel = new Level01(); break;
+	case 1: m_pLevel = new Level02(); break;
+	case 2: m_pLevel = new Level03(); break;
 	}
 
 	m_pLevel->SetGameplayScreen(this);
 	m_pLevel->LoadContent(*m_pResourceManager);
+}
+
+void GameplayScreen::NextLevel()
+{
+	if (m_levelIndex >= m_maxLevelIndex) {
+		Exit();
+	}
+	else {
+		m_levelIndex++;
+		SetOnRemove([this]() { AddScreen(new GameplayScreen(m_levelIndex)); });
+		Exit();
+	}
 }
 
 void GameplayScreen::HandleInput(const InputState& input)

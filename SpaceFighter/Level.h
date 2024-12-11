@@ -63,6 +63,26 @@ public:
 	/** @brief Set the background texture for the level.
 		@param pBackground A pointer to the texture to use as the background. */
 	virtual void SetBackground(Texture* pBackground) { m_pBackground = pBackground; }
+	
+	/** @brief Returns the total number of enemy ships to be spawned for the level. */
+	virtual int GetEnemyShipCount() const { return m_enemyShipCount; }
+
+	/** @brief Set the number of enemy ships to be spawned.
+	@param count The number of ships to spawn. */
+	virtual void SetEnemyShipCount(const int count) { m_enemyShipCount = count; }
+
+	/** @brief Returns the number of enemy ships that have yet to be deactivated (destroyed). */
+	virtual int GetEnemyShipsRemaining() const { return m_enemyShipsRemaining; }
+
+	/** @brief Set the number of enemy ships that have yet to be deactivated (destroyed). 
+	@param count The number of ships remaining. */
+	virtual void SetEnemyShipsRemaining(const int count) { m_enemyShipsRemaining = count; }
+
+	/** @brief Decrease the amount of enemy ships in the level by 1. */
+	virtual void DecreaseEnemyShips();
+
+	/** @brief Checks if the level is over and should transition to the next. */
+	virtual bool IsOver() const;
 
 	/** @brief Get the alpha value of the screen.
 		@return The alpha value of the screen. */
@@ -131,6 +151,12 @@ protected:
 	virtual AudioSample* GetBackgroundAudio() { return m_pAudio; }
 
 private:
+	
+	// How many enemy ships to spawn for this level
+	int m_enemyShipCount = 0;
+
+	// A level with 0 ships remaining with transition to the next available level
+	int m_enemyShipsRemaining = 0;
 
 	static std::vector<Explosion *> s_explosions;
 	//std::vector<Explosion *>::iterator m_explosionIt;

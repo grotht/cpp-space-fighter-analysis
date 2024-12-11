@@ -1,24 +1,27 @@
 #include "Level03.h"
 #include "BioEnemyBoss.h"
+
 void Level03::LoadContent(ResourceManager& resourceManager)
 {
 	Texture* pTexture = resourceManager.Load<Texture>("Textures\\BioEnemyBoss.png");
-	const int COUNT = 1;
 
-	double xPositions[COUNT] =
+	double xPositions[] =
 	{
 		0.5
 	};
 
-	double delays[COUNT] =
+	double delays[] =
 	{
 		0.0
 	};
 
+	SetEnemyShipCount(sizeof(xPositions) / sizeof(xPositions[0]));
+	SetEnemyShipsRemaining( GetEnemyShipCount() );
+
 	float delay = 1.0; // start delay
 	Vector2 position;
 
-	for (int i = 0; i < COUNT; i++)
+	for (int i = 0; i < GetEnemyShipCount(); i++)
 	{
 		delay += delays[i];
 		position.Set(xPositions[i] * Game::GetScreenWidth(), 100);

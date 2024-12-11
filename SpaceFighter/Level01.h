@@ -5,7 +5,6 @@
 /** @brief The first level of the game. */
 class Level01 :	public Level
 {
-
 public:
 	
 	/** @brief Instantiate a level object. */

@@ -131,6 +131,16 @@ Level::~Level()
 	}
 }
 
+void Level::DecreaseEnemyShips() {
+	if (m_enemyShipsRemaining > 0) {
+		m_enemyShipsRemaining--;
+	}
+}
+
+bool Level::IsOver() const {
+	return (GetEnemyShipsRemaining() <= 0);
+}
+
 
 void Level::LoadContent(ResourceManager& resourceManager)
 {
@@ -156,7 +166,7 @@ void Level::LoadContent(ResourceManager& resourceManager)
 
 void Level::HandleInput(const InputState& input)
 {
-	if (IsScreenTransitioning()) return;
+	//if (IsScreenTransitioning()) return;
 
 	m_pPlayerShip->HandleInput(input);
 }
@@ -187,6 +197,10 @@ void Level::Update(const GameTime& gameTime)
 	for (Explosion *pExplosion : s_explosions) pExplosion->Update(gameTime);
 
 	if (!m_pPlayerShip->IsActive()) GetGameplayScreen()->Exit();
+
+	if (IsOver() && !IsScreenTransitioning()) {
+		GetGameplayScreen()->NextLevel();
+	}
 }
 
 
