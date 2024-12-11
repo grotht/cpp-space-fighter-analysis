@@ -6,6 +6,8 @@
 #include "CollisionManager.h"
 #include "Explosion.h"
 
+#include "DiagonalBlaster.h"
+
 using namespace KatanaEngine;
 
 class GameplayScreen;
@@ -153,6 +155,8 @@ private:
 
 	PlayerShip* m_pPlayerShip;
 	std::vector<Projectile*> m_projectiles;
+	std::vector<Projectile*> m_leftProjectiles;
+	std::vector<Projectile*> m_rightProjectiles;
 
 	void CheckCollisions(std::vector<GameObject*>& sector);
 

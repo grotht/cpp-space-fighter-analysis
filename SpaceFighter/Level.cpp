@@ -2,6 +2,8 @@
 #include "Level.h"
 #include "EnemyShip.h"
 #include "Blaster.h"
+#include "DiagonalBlaster.h"
+#include "Projectile.h"
 #include "GameplayScreen.h"
 
 std::vector<Explosion *> Level::s_explosions;
@@ -46,16 +48,61 @@ Level::Level()
 
 	// Setup player ship
 	m_pPlayerShip = new PlayerShip();
+
 	Blaster *pBlaster = new Blaster("Main Blaster");
 	pBlaster->SetProjectilePool(&m_projectiles);
 	m_pPlayerShip->AttachItem(pBlaster, Vector2::UNIT_Y * -20);
 
+	DiagonalBlaster* pDiagonalLeftBlaster = new DiagonalBlaster("Left Diagonal Blaster");
+	pDiagonalLeftBlaster->SetProjectilePool(&m_leftProjectiles);
+	m_pPlayerShip->AttachItem(pDiagonalLeftBlaster, Vector2::UNIT_Y * -20);
+
+	DiagonalBlaster* pDiagonalRightBlaster = new DiagonalBlaster("Right Diagonal Blaster");
+	pDiagonalRightBlaster->SetProjectilePool(&m_rightProjectiles);
+	m_pPlayerShip->AttachItem(pDiagonalRightBlaster, Vector2::UNIT_Y * -20);
+
+	//Blaster* pBlaster2 = new Blaster("blaster2");
+	//pBlaster2->SetTriggerType()
+
 	for (int i = 0; i < 100; i++)
 	{
-		Projectile *pProjectile = new Projectile();
+		Projectile* pProjectile = new Projectile();
 		m_projectiles.push_back(pProjectile);
 		AddGameObject(pProjectile);
+
+		Projectile* pLeftProjectile = new Projectile();
+		pLeftProjectile->SetDirection(Vector2(-0.5, -0.5));
+		m_leftProjectiles.push_back(pLeftProjectile);
+		AddGameObject(pLeftProjectile);
+
+		Projectile* pRightProjectile = new Projectile();
+		pRightProjectile->SetDirection(Vector2(0.5, -0.5));
+		m_rightProjectiles.push_back(pRightProjectile);
+		AddGameObject(pRightProjectile);
 	}
+
+	//for (int i = 0; i < 100; i++)
+	//{
+	//	DiagonalProjectileLeft* pProjectileLeft = new DiagonalProjectileLeft();
+	//	m_projectileLefts.push_back(pProjectileLeft);
+	//	AddGameObject(pProjectileLeft);
+	//}
+
+	//for (int i = 0; i < 100; i++)
+	//{
+	//	Projectile* pLeftProjectile = new Projectile();
+	//	pLeftProjectile->SetDirection(Vector2(-0.5, -0.5));
+	//	m_leftProjectiles.push_back(pLeftProjectile);
+	//	AddGameObject(pLeftProjectile);
+	//}
+
+	//for (int i = 0; i < 100; i++)
+	//{
+	//	Projectile* pRightProjectile = new Projectile();
+	//	pRightProjectile->SetDirection(Vector2(0.5, -0.5));
+	//	m_rightProjectiles.push_back(pRightProjectile);
+	//	AddGameObject(pRightProjectile);
+	//}
 	
 	m_pPlayerShip->Activate();
 	AddGameObject(m_pPlayerShip);
