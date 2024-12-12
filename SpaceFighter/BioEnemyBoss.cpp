@@ -13,18 +13,30 @@ void BioEnemyBoss::LoadContent(ResourceManager& resourceManager)
 BioEnemyBoss::BioEnemyBoss()
 {
 	SetSpeed(350);
-	SetMaxHitPoints(1);
+	SetMaxHitPoints(20);
 	SetCollisionRadius(140);
 }
 
 void BioEnemyBoss::Update(const GameTime& gameTime)
 {
 	if (IsActive())
-	{
-		float x = sin(gameTime.GetTotalTime() * Math::PI + GetIndex());
-		x *= GetSpeed() * gameTime.GetElapsedTime() * 2.7f;
-		TranslatePosition(x);
-		FireWeapons();
+	{ 
+		float y = GetSpeed()/7 * gameTime.GetElapsedTime();
+		if (GetPosition().Y <= 100) {
+			float x = sin(gameTime.GetTotalTime() * Math::PI + GetIndex());
+			x *= GetSpeed() * gameTime.GetElapsedTime() * 2.7f;
+			TranslatePosition(x, y);
+			
+		}
+		else {
+			float x = sin(gameTime.GetTotalTime() * Math::PI + GetIndex());
+			x *= GetSpeed() * gameTime.GetElapsedTime() * 2.7f;
+			TranslatePosition(x);
+			
+			FireWeapons();
+			
+		}
+		
 		
 	}
 	EnemyShip::Update(gameTime);
